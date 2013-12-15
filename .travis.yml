@@ -2,4 +2,4 @@ language: ruby
 rvm:
   - "2.0.0"
 script:
-  - bundle exec cucumber -f progress -r features cucumber/features
+  - bundle exec cucumber -f progress -r features features
