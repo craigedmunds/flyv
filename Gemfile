@@ -1,4 +1,4 @@
-group :development, :test do
-  gem 'cucumber'
-  gem 'rspec'
-end
+source 'http://rubygems.org'
+
+gem 'cucumber'
+gem 'rspec'
