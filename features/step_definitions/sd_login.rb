@@ -3,8 +3,13 @@ Given(/^I navigate to (.*)\/$/) do |url|
 end
 When(/^I click join$/) do
   @driver.find_element(:link, 'JOIN').click
+
 end
 When(/^Input some personal details$/) do
+
+  wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+  wait.until { @driver.find_element(:id, 'ctl00_uiContent_uiEmailAddressinner') }
+
   @driver.find_element(:id, 'ctl00_uiContent_uiEmailAddressinner').send_keys "test_user_#{SecureRandom.hex(3).upcase}@a.com"
   @driver.find_element(:id, 'ctl00_uiContent_uiPasswordinner').send_keys "password"
   @driver.find_element(:id, 'ctl00_uiContent_uiConfirmPasswordinner').send_keys "password"
@@ -19,6 +24,9 @@ When(/^I click create account$/) do
   @driver.find_element(:id, 'ctl00_uiContent_BtnSubmit').click
 end
 Then(/^I will have registered to FlyVictor$/) do
+  wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+  wait.until { @driver.find_element(:tag_name, "body") }
+
   @driver.find_element(:tag_name, "body").text.include?("Your registration is almost complete.").should == true
 end
 
